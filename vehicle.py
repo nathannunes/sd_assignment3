@@ -1,8 +1,8 @@
 class Vehicle:
-    _class = ""
+    _class = "hatch back"
 
-    def __int__(self):
-        self._class = "sedan"
+    def __init__(self, t="sedan"):
+        self._class = t
 
     def print(self):
-        print("class of vehicle :  ", self._class , "\n")
+        print("class of vehicle :  ", self._class, "\n")
