@@ -3,15 +3,17 @@ from vehicle import Vehicle
 
 class Car(Vehicle):
     _speed = int(0)
-    _model = "toyota"
-    _color = "red"
+    _model = "Toyota"
+    _color = "Red"
     numCars = int(0)
 
-    def __int__(self, s=10, c="orange", m="ford"):
+    # Multiple constructors not supported in python, this is how we do it
+    def __init__(self, s=10, c='White', m='Porsche'):
+
         self._speed = s
         self._color = c
         self._model = m
-        self.numCars += 1
+        Car.numCars += 1
 
     def getSpeed(self):
         return int(self._speed)
@@ -32,18 +34,20 @@ class Car(Vehicle):
         self._color = c
 
     def print(self):
-        print("speed : ", self._speed, "\nmodel : ", self._model, "\ncolor : ", self._color)
+        print("speed : ", self.getSpeed(), "\nmodel : ", self.getModel(), "\ncolor : ", self.getColor())
 
     def decelerate(self):
-        return 0 if (self._speed - 5) <= 0 else (self._speed - 5)
+        print('slowing down')
+        self._speed = 0 if (self._speed - 10) <= 0 else (self._speed - 10)
 
     def accelerate(self):
-        if self._speed + 10 >= 350:
-            print("speed is ", self._speed, "  mph, you are approaching the max. speed limit\n")
-            print("speed capped at 350 mph")
-            return 350
+        if self._speed + 10 >= 80:
+            print("speed is ", self._speed,"mph, you are approaching the max. speed limit")
+            print("speed capped at 80 mph")
+            self._speed = 80
         else:
-            return self._speed + 10
+            print('increasing speed ....')
+            self._speed += 10
 
     def getNumCars(self):
-        return self.numCars
+        return Car.numCars
